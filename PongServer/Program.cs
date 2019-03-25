@@ -11,7 +11,7 @@ namespace PongServer
 {
     class Program
     {
-        public static string IP_ADDRESS = "127.0.0.1"; //185.223.29.179
+        public static string IP_ADDRESS = "185.223.29.179"; //185.223.29.179
         public static int PORT = 6969;
 
         static byte[] buffer = new byte[3072];
@@ -22,11 +22,22 @@ namespace PongServer
 
         static void Main(string[] args)
         {
+            InsertBasicTestLobby();
             SetupServer();
-
             Console.ReadLine();
         }
 
+        private static void InsertBasicTestLobby()
+        {
+            Lobby l1 = new Lobby();
+            l1.LOBBY_ID = GetNextLobbyID();
+            l1.LOBBY_NAME = "TestLobby1";
+            _lobbies.Add(l1);
+            Lobby l2 = new Lobby();
+            l2.LOBBY_ID = GetNextLobbyID();
+            l2.LOBBY_NAME = "ServerConnectionWorksLOL";
+            _lobbies.Add(l2);
+        }
 
         static void SetupServer()
         {
@@ -70,7 +81,6 @@ namespace PongServer
                 Lobby newLobby = new Lobby();
                 newLobby.LOBBY_ID = GetNextLobbyID();
                 newLobby.LOBBY_NAME = lobbyString[0];
-                // example: createlobby,LobbyName
                 _lobbies.Add(newLobby);
 
                 Console.WriteLine("Creating lobby: " + newLobby.LOBBY_NAME);
@@ -82,7 +92,7 @@ namespace PongServer
                 string lobbies = "lobbies:";
                 foreach (var name in _lobbies)
                 {
-                    lobbies = lobbies + name + ",";
+                    lobbies = lobbies + name.LOBBY_NAME + ",";
                 }
 
                 byte[] data = Encoding.ASCII.GetBytes(lobbies);
@@ -94,8 +104,13 @@ namespace PongServer
 
         private static int GetNextLobbyID()
         {
-            int res = _lobbies.Max(x => x.LOBBY_ID);
-            return res;
+            if(_lobbies.Count > 0)
+            {
+                int res = _lobbies.Max(x => x.LOBBY_ID);
+                return res;
+            }
+            return 0;
+            
         }
 
         private static void sendCallback(IAsyncResult ar)

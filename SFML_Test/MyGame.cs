@@ -128,15 +128,15 @@ namespace SFML_Test
         public void GameMainLoop()
         {
             COLOR_SLIDER_RED = new ColorSlider(mainSFMLWindow);
-            COLOR_SLIDER_RED.SetPostion(96, 100);
+            COLOR_SLIDER_RED.SetPostion(64, 100);
             COLOR_SLIDER_RED.Init(255,0,0);
 
             COLOR_SLIDER_GREEN = new ColorSlider(mainSFMLWindow);
-            COLOR_SLIDER_GREEN.SetPostion(96, 150);
+            COLOR_SLIDER_GREEN.SetPostion(64, 150);
             COLOR_SLIDER_GREEN.Init(0,255,0);
 
             COLOR_SLIDER_BLUE = new ColorSlider(mainSFMLWindow);
-            COLOR_SLIDER_BLUE.SetPostion(96, 200);
+            COLOR_SLIDER_BLUE.SetPostion(64, 200);
             COLOR_SLIDER_BLUE.Init(0,0,255);
 
 
@@ -204,21 +204,13 @@ namespace SFML_Test
             COLOR_SLIDER_RED.Draw();
             COLOR_SLIDER_GREEN.Draw();
             COLOR_SLIDER_BLUE.Draw();
-
-
+           
             RectangleShape playerNameInput = new RectangleShape(new Vector2f(350, 32));
             playerNameInput.OutlineColor = Color.Magenta;
             playerNameInput.OutlineThickness = 1;
             playerNameInput.FillColor = Color.White;
             playerNameInput.Position = new Vector2f(64, 100);
             playerNameInput.Draw(mainSFMLWindow, RenderStates.Default);
-
-            int playerColorRedLeftPosX = 96;
-            int playerColorRedLeftPosY = 175;
-            
-
-            
-
         }
 
         private void DrawLobbyList()
@@ -232,15 +224,15 @@ namespace SFML_Test
             {
                 if (LOBBIES.Count != 0)
                 {
-                    int y = 128;
+                    int y = 200;
                     foreach (var lobby in LOBBIES)
                     {
                         Text lobbyName = new Text(lobby, baseFont);
                         lobbyName.FillColor = Color.White;
-                        lobbyName.CharacterSize = 12;
-                        lobbyName.Position = new Vector2f(64, y);
+                        lobbyName.CharacterSize = 25;
+                        lobbyName.Position = new Vector2f(260, y);
                         lobbyName.Draw(mainSFMLWindow, RenderStates.Default);
-                        y += 20;
+                        y += 31;
                     }
                 }
             }

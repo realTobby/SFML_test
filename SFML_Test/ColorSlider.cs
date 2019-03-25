@@ -53,8 +53,8 @@ namespace SFML_Test
         {
             colorNumber = new Text(number.ToString(), MyGame.baseFont);
             colorNumber.FillColor = Color.White;
-            colorNumber.CharacterSize = 12;
-            colorNumber.Position = new Vector2f(POS_X, POS_Y);
+            colorNumber.CharacterSize = 25;
+            colorNumber.Position = new Vector2f(POS_X+64, POS_Y+96);
         }
 
         private void InitRightButton()
